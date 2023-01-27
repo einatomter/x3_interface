@@ -27,6 +27,6 @@
         <arg name="width" value="0"/>
         <arg name="height" value="0"/>
         <!-- visualize on an image_view window the stream generated -->
-        <arg name="visualize" value="true" />
+        <arg name="visualize" value="false" />
    </include>
 </launch>
