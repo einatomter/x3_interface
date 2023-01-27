@@ -1,0 +1,15 @@
+<launch>
+  <!-- create publish to x3 node -->
+  <node pkg="x3_interface" 
+    type="drone_interface.py" 
+    name="drone_interface" 	
+    output="screen">
+  </node>  
+
+  <!-- create keyboard input node -->
+  <node pkg="x3_interface" 
+    type="teleop_keyboard_pynput.py" 
+    name="teleop_keyboard" 	
+    output="screen">
+  </node>
+</launch>
