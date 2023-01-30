@@ -10,12 +10,33 @@ project(x3_interface)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
+  geometry_msgs
+  sensor_msgs
+  message_generation
+)
+
+
+add_message_files(
+  FILES
+  ImuData.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+  sensor_msgs
 )
 
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES x3_interface
-#  CATKIN_DEPENDS rospy std_msgs
+ CATKIN_DEPENDS 
+ rospy
+ std_msgs
+ geometry_msgs
+ sensor_msgs
+ message_runtime
 #  DEPENDS system_lib
 )
 

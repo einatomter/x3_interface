@@ -1,0 +1,4 @@
+geometry_msgs/Vector3 accelerometer
+geometry_msgs/Vector3 gyro
+geometry_msgs/Vector3 compass
+float32 temperature
