@@ -78,7 +78,7 @@ if __name__ == '__main__':
     input_sub = rospy.Subscriber('/observer/calibrated_imu_data', ImuData, subscribe_callback)
 
     # initial delay
-    rospy.sleep(0.3)
+    rospy.sleep(0.35)
 
     rospy.Timer(rospy.Duration(0.01), publish_callback)
 
