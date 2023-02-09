@@ -24,17 +24,17 @@ def subscribe_callback(data: Imu):
         index = 0
 
     # angular velocity
-    imu_out.angular_velocity.x =  data.angular_velocity.x * 0.99
-    imu_out.angular_velocity.y =  data.angular_velocity.y * 0.99
-    imu_out.angular_velocity.z = -data.angular_velocity.z * 0.99
+    imu_out.angular_velocity.x =  data.angular_velocity.x * 0.82
+    imu_out.angular_velocity.y =  data.angular_velocity.y * 0.82
+    imu_out.angular_velocity.z = -data.angular_velocity.z * 0.82
 
     for index in imu_out.angular_velocity_covariance:
         index = 0
 
     # linear acceleration
-    imu_out.linear_acceleration.x = -data.linear_acceleration.x * 9.2/10
-    imu_out.linear_acceleration.y = -data.linear_acceleration.y * 9.2/10
-    imu_out.linear_acceleration.z =  data.linear_acceleration.z * 9.2/10
+    imu_out.linear_acceleration.x = -data.linear_acceleration.x * 9.7/10
+    imu_out.linear_acceleration.y = -data.linear_acceleration.y * 9.7/10
+    imu_out.linear_acceleration.z =  data.linear_acceleration.z * 9.7/10
 
     for index in imu_out.linear_acceleration_covariance:
         index = 0
