@@ -8,17 +8,21 @@ import os
 import time
 import sys, termios
 import rospy
-from geometry_msgs.msg import Wrench, Twist, Vector3
+from sensor_msgs.msg import FluidPressure
 
 from blueye.sdk import Drone
 
 
-def callback(cmd_vel: Twist):
+def callback(drone: Drone):
+    
+    print(f"depth: {drone.depth} mm")
 
-    myDrone.motion.surge = cmd_vel.linear.x
-    myDrone.motion.sway = -cmd_vel.linear.y
-    myDrone.motion.heave = -cmd_vel.linear.z
-    myDrone.motion.yaw = -cmd_vel.angular.z
+    depth = FluidPressure()
+    # depth.header = rospy.Header()
+    depth.header.frame_id = "depth"
+    # depth.header.stamp = rospy.get_rostime()
+    # depth.fluid_pressure = drone.depth/1000
+    # output_pub.publish(depth)
 
 if __name__ == '__main__':
 
@@ -27,19 +31,15 @@ if __name__ == '__main__':
     rospy.init_node(node_name)
     rospy.loginfo('Starting [%s] node' % node_name)
 
-    myDrone = Drone()
-    print("Interface: drone connected!")
-
-    myDrone.lights = 10
-    time.sleep(2)
-    myDrone.lights = 0
-
-    input_sub = rospy.Subscriber('/x3/cmd_vel', Twist, callback)
+    myDrone = Drone(slaveModeEnabled=True)
+    print("Fetch depth: drone connected!")
+    output_pub = rospy.Publisher('x3/depth', FluidPressure, queue_size=1)
 
     # Ros Spin
-    rate = rospy.Rate(50) # Hz
+    # rate = rospy.Rate(50) # Hz
     while not rospy.is_shutdown():
-        rate.sleep()
+        time.sleep(0.2)
+        callback(myDrone)
 
     # termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     rospy.loginfo('Shutting down [%s] node' % node_name)

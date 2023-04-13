@@ -1,0 +1,10 @@
+<launch>
+  <!-- keyboard teleoperation -->
+  <include file="$(find x3_interface)/launch/keyboard_teleop.launch" />
+
+    <!-- fetch depth -->
+  <include file="$(find x3_interface)/launch/fetch_depth.launch" />
+
+  <!-- fetch video stream -->
+  <!-- <include file="$(find x3_interface)/launch/video_stream.launch" /> -->
+</launch>

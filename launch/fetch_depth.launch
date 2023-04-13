@@ -1,0 +1,8 @@
+<launch>
+  <!-- create publish x3 depth node -->
+  <node pkg="x3_interface" 
+    type="drone_fetch_depth.py" 
+    name="drone_fetch_depth" 	
+    output="screen">
+  </node>  
+</launch>
