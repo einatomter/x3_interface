@@ -5,6 +5,8 @@ import rospy
 from sensor_msgs.msg import Imu
 from x3_interface.msg import ImuData
 
+GRAVITY_CONSTANT = 9.81
+
 def subscribe_callback(data: ImuData):
 
     imu_out = Imu()
@@ -32,9 +34,9 @@ def subscribe_callback(data: ImuData):
         index = 0
 
     # linear acceleration
-    imu_out.linear_acceleration.x = data.accelerometer.x * 10
-    imu_out.linear_acceleration.y = data.accelerometer.y * 10
-    imu_out.linear_acceleration.z = data.accelerometer.z * 10
+    imu_out.linear_acceleration.x = data.accelerometer.x * GRAVITY_CONSTANT
+    imu_out.linear_acceleration.y = data.accelerometer.y * GRAVITY_CONSTANT
+    imu_out.linear_acceleration.z = data.accelerometer.z * GRAVITY_CONSTANT
 
     for index in imu_out.linear_acceleration_covariance:
         index = 0
